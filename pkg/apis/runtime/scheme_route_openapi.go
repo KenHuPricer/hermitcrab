@@ -10,7 +10,6 @@ import (
 	"sync"
 
 	"github.com/gin-gonic/gin"
-
 	"github.com/seal-io/walrus/utils/bytespool"
 	"github.com/seal-io/walrus/utils/json"
 )

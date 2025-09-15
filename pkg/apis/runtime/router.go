@@ -126,7 +126,7 @@ func (opts RouterOptions) Apply(fn func(o RouterOption) bool) (rOpts RouterOptio
 		}
 	}
 
-	return
+	return rOpts
 }
 
 func NewRouter(options ...RouterOption) IRouter {

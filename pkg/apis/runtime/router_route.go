@@ -12,12 +12,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/gin-gonic/gin/render"
-	"golang.org/x/exp/slices"
-	"k8s.io/apimachinery/pkg/util/sets"
-
 	"github.com/seal-io/walrus/utils/errorx"
 	"github.com/seal-io/walrus/utils/log"
 	"github.com/seal-io/walrus/utils/strs"
+	"golang.org/x/exp/slices"
+	"k8s.io/apimachinery/pkg/util/sets"
 
 	"github.com/seal-io/hermitcrab/pkg/apis/runtime/bind"
 )
@@ -331,7 +330,7 @@ func (p RouteProfile) DeepCopy() (o RouteProfile) {
 	o = p
 	o.ResourceProfile = p.ResourceProfile.DeepCopy()
 
-	return
+	return o
 }
 
 // Collection of resource route name constants.
@@ -779,7 +778,7 @@ func (p *ResourceProfile) DeepCopy() (o ResourceProfile) {
 	o.ResourcePaths = slices.Clone(p.ResourcePaths)
 	o.ResourcePathRefers = slices.Clone(p.ResourcePathRefers)
 
-	return
+	return o
 }
 
 // Prepend prepends the given resource profile.
@@ -840,13 +839,13 @@ func profileResource(h IResourceHandler) (p ResourceProfile) {
 		p.ResourcePathRefers = []string{strings.ToLower(v.InternalKind())}
 	}
 
-	return
+	return p
 }
 
 // getCustomRoute returns the custom route of the given type.
 func getCustomRoute(t reflect.Type) (method, subpath string, ok bool) {
 	if t == nil {
-		return
+		return method, subpath, ok
 	}
 
 	for t.Kind() == reflect.Pointer {
@@ -854,7 +853,7 @@ func getCustomRoute(t reflect.Type) (method, subpath string, ok bool) {
 	}
 
 	if t.Kind() != reflect.Struct {
-		return
+		return method, subpath, ok
 	}
 
 	for i := 0; i < t.NumField(); i++ {
@@ -882,7 +881,7 @@ func getCustomRoute(t reflect.Type) (method, subpath string, ok bool) {
 		return m, p, true
 	}
 
-	return
+	return method, subpath, ok
 }
 
 // isGinError returns true if the given error is a gin error.

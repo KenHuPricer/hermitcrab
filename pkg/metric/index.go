@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-
 	"github.com/seal-io/walrus/utils/log"
 )
 

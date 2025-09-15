@@ -17,10 +17,10 @@ import (
 	"github.com/seal-io/walrus/utils/log"
 	"github.com/seal-io/walrus/utils/runtimex"
 	"github.com/sirupsen/logrus"
-	"github.com/urfave/cli/v2"
+	cli "github.com/urfave/cli/v2"
 	"k8s.io/apimachinery/pkg/util/validation"
 	"k8s.io/apimachinery/pkg/util/validation/field"
-	"k8s.io/klog/v2"
+	klog "k8s.io/klog/v2"
 
 	"github.com/seal-io/hermitcrab/pkg/consts"
 	"github.com/seal-io/hermitcrab/pkg/database"

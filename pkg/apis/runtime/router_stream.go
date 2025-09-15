@@ -13,7 +13,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
-
 	"github.com/seal-io/walrus/utils/gopool"
 	"github.com/seal-io/walrus/utils/log"
 )
@@ -141,7 +140,7 @@ func doBidiStreamRequest(c *gin.Context, route Route, routeInput reflect.Value) 
 	// if downstream closes, the close handler will be triggered.
 	conn.SetCloseHandler(func(int, string) (err error) {
 		cancel()
-		return
+		return err
 	})
 
 	frc := make(chan struct {

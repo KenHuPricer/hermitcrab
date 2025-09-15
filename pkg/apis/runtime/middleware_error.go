@@ -78,7 +78,7 @@ func getHttpError(c *gin.Context) (he ErrorResponse) {
 
 	he.StatusText = http.StatusText(he.Status)
 
-	return
+	return he
 }
 
 type ErrorResponse struct {

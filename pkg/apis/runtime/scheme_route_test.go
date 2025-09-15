@@ -13,10 +13,10 @@ import (
 	"github.com/gin-gonic/gin/binding"
 	"github.com/gin-gonic/gin/render"
 	"github.com/google/uuid"
+	"github.com/seal-io/walrus/utils/json"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/seal-io/hermitcrab/pkg/apis/runtime/openapi"
-	"github.com/seal-io/walrus/utils/json"
 )
 
 type (
@@ -292,7 +292,7 @@ func Test_getOperationParameters(t *testing.T) {
 						Value: pv,
 					},
 				)
-				return
+				return refs
 			}(),
 		},
 		{
@@ -329,7 +329,7 @@ func Test_getOperationParameters(t *testing.T) {
 					},
 				)
 
-				return
+				return refs
 			}(),
 		},
 		{
@@ -341,7 +341,7 @@ func Test_getOperationParameters(t *testing.T) {
 				RequestType: reflect.TypeOf(C{}),
 			},
 			expected: func() (refs openapi3.Parameters) {
-				return
+				return refs
 			}(),
 		},
 		{
@@ -353,7 +353,7 @@ func Test_getOperationParameters(t *testing.T) {
 				RequestType: reflect.TypeOf(D{}),
 			},
 			expected: func() (refs openapi3.Parameters) {
-				return
+				return refs
 			}(),
 		},
 		{
@@ -365,7 +365,7 @@ func Test_getOperationParameters(t *testing.T) {
 				RequestType: reflect.TypeOf(E{}),
 			},
 			expected: func() (refs openapi3.Parameters) {
-				return
+				return refs
 			}(),
 		},
 		{
@@ -402,7 +402,7 @@ func Test_getOperationParameters(t *testing.T) {
 					},
 				)
 
-				return
+				return refs
 			}(),
 		},
 	}

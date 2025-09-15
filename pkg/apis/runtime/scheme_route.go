@@ -13,13 +13,13 @@ import (
 	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/gin-gonic/gin/render"
+	"github.com/seal-io/walrus/utils/hash"
+	"github.com/seal-io/walrus/utils/strs"
+	"github.com/seal-io/walrus/utils/version"
 	"golang.org/x/exp/slices"
 	"k8s.io/apimachinery/pkg/util/sets"
 
 	"github.com/seal-io/hermitcrab/pkg/apis/runtime/openapi"
-	"github.com/seal-io/walrus/utils/hash"
-	"github.com/seal-io/walrus/utils/strs"
-	"github.com/seal-io/walrus/utils/version"
 )
 
 var openAPISchemas = &openapi3.T{
@@ -948,5 +948,5 @@ func flattenSchemas(i openapi3.Schemas) (o openapi3.Schemas) {
 		o[pn] = p
 	}
 
-	return
+	return o
 }

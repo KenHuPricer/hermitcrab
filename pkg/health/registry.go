@@ -31,7 +31,7 @@ func Register(ctx context.Context, cs Checkers) (err error) {
 		err = nil
 	})
 
-	return
+	return err
 }
 
 // Check defines the stereotype for health checking.

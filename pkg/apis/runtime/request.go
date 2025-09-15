@@ -36,10 +36,10 @@ func (r RequestPagination) Offset() int {
 func (r RequestPagination) Paging() (limit, offset int, request bool) {
 	request = r.Page > 0
 	if !request {
-		return
+		return limit, offset, request
 	}
 	limit = r.Limit()
 	offset = r.Offset()
 
-	return
+	return limit, offset, request
 }

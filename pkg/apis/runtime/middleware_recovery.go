@@ -7,7 +7,6 @@ import (
 	"runtime"
 
 	"github.com/gin-gonic/gin"
-
 	"github.com/seal-io/walrus/utils/log"
 )
 

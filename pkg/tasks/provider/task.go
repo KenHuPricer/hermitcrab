@@ -16,5 +16,5 @@ func SyncMetadata(_ context.Context, providerService *provider.Service) (name st
 		return providerService.Metadata.Sync(ctx)
 	})
 
-	return
+	return name, expr, task
 }

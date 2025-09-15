@@ -35,5 +35,5 @@ func Register(ctx context.Context, cs Collectors) (err error) {
 		}
 	})
 
-	return
+	return err
 }

@@ -9,7 +9,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
-
 	"github.com/seal-io/walrus/utils/json"
 )
 
@@ -24,12 +23,12 @@ type RequestUnidiStream struct {
 func (r RequestUnidiStream) Write(p []byte) (n int, err error) {
 	n, err = r.conn.Write(p)
 	if err != nil {
-		return
+		return n, err
 	}
 
 	r.conn.Flush()
 
-	return
+	return n, err
 }
 
 // SendMsg sends the given data to client.
@@ -110,7 +109,7 @@ func (r RequestBidiStream) Read(p []byte) (n int, err error) {
 	}
 
 	if err != nil {
-		return
+		return n, err
 	}
 
 	switch msgType {
@@ -120,7 +119,7 @@ func (r RequestBidiStream) Read(p []byte) (n int, err error) {
 			Text: "unresolved message type: binary",
 		}
 
-		return
+		return n, err
 	case websocket.TextMessage:
 	}
 
@@ -130,14 +129,14 @@ func (r RequestBidiStream) Read(p []byte) (n int, err error) {
 		r.connReadBytes.Add(int64(n))
 	}
 
-	return
+	return n, err
 }
 
 // Write implements io.Writer.
 func (r RequestBidiStream) Write(p []byte) (n int, err error) {
 	msgWriter, err := r.conn.NextWriter(websocket.TextMessage)
 	if err != nil {
-		return
+		return n, err
 	}
 
 	defer func() { _ = msgWriter.Close() }()
@@ -148,7 +147,7 @@ func (r RequestBidiStream) Write(p []byte) (n int, err error) {
 		r.connWriteBytes.Add(int64(n))
 	}
 
-	return
+	return n, err
 }
 
 // RecvMsg receives message from client.

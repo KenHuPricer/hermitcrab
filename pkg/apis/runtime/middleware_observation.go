@@ -5,11 +5,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dustin/go-humanize"
+	humanize "github.com/dustin/go-humanize"
 	"github.com/gin-gonic/gin"
-	"k8s.io/apimachinery/pkg/util/sets"
-
 	"github.com/seal-io/walrus/utils/log"
+	"k8s.io/apimachinery/pkg/util/sets"
 )
 
 // SkipLoggingPaths is a RouterOption to ignore logging for the given paths.

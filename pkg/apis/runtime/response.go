@@ -131,7 +131,7 @@ func (r ResponseFile) Render(w http.ResponseWriter) (err error) {
 	}
 	_, err = io.Copy(w, r.Reader)
 
-	return
+	return err
 }
 
 func (r ResponseFile) WriteContentType(w http.ResponseWriter) {
